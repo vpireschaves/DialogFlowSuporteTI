@@ -1,0 +1,25 @@
+{
+  "name": "dialogflowsuporteti",
+  "version": "1.0.0",
+  "description": "Backend para DialogFlow com a temática de suporte de TI",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node --es-module-specifier-resolution=node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vpireschaves/DialogFlowSuporteTI.git"
+  },
+  "author": "Vinícius Pires Chaves",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vpireschaves/DialogFlowSuporteTI/issues"
+  },
+  "homepage": "https://github.com/vpireschaves/DialogFlowSuporteTI#readme",
+  "type": "module",
+  "dependencies": {
+    "express": "^4.19.2",
+    "mysql2": "^3.9.3"
+  }
+}

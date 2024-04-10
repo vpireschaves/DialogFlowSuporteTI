@@ -9,10 +9,10 @@ export default class Database {
     constructor() {
 
         this.#conexao = mysql.createPool({
-            host: '', //endereço do nosso banco de dados na nuvem
+            host: 'vidici-mysql-vidici.a.aivencloud.com', //endereço do nosso banco de dados na nuvem
             database: 'DB_(RA)', //a database de cada um de vocês possui a nomenclatura DB_(RA)
-            user: '(RA)', // usuario e senha de cada um de vocês é o RA
-            password: '(RA)',
+            user: 'avnadmin', // usuario e senha de cada um de vocês é o RA
+            password: '',
         });
     }
 

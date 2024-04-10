@@ -5,10 +5,10 @@ export default class PessoaModel {
     #pessoaEmail
 
     get pessoaId() { return this.#pessoaId }
-    get pessoaNome() { return this.#pessoaNome }
-    get pessoaEmail() { return this.#pessoaEmail }
     set pessoaId(pessoaId) { this.#pessoaId = pessoaId }
+    get pessoaNome() { return this.#pessoaNome }
     set pessoaNome(pessoaNome) { this.#pessoaNome = pessoaNome }
+    get pessoaEmail() { return this.#pessoaEmail }
     set pessoaEmail(pessoaEmail) { this.#pessoaEmail = pessoaEmail }
 
     constructor(pessoaId, pessoaNome, pessoaEmail) {

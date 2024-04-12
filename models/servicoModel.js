@@ -1,3 +1,7 @@
+import Database from "../db/database.js"
+
+let banco = new Database();
+
 export default class ServicoModel {
     #servicoId
     #servicoNome
@@ -22,5 +26,21 @@ export default class ServicoModel {
             servicoNome: this.#servicoNome,
             servicoPrazo: this.#servicoPrazo
         }
+    }
+
+    async listarServicos(){
+        
+        let lista = [];
+        let sql = "select * from tb_servico";
+
+        let rows = await banco.ExecutaComando(sql);
+
+        for (let i = 0; i < rows.length; i++){
+            let row = rows[i];
+
+            lista.push(new ServicoModel(row['ser_id'], row['ser_nome'], row['ser_prazo']));
+        }
+
+        return lista;
     }
 }

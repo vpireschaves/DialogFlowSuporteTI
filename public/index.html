@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot - Suporte TI</title>
+    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        p {
+            font-size: 24px;
+            font-weight: bold;
+            font-family: Arial, sans-serif;
+            color: #333;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        df-messenger {
+            --df-messenger-bot-message: white;
+            --df-messenger-button-titlebar-color: #3a5f8f;
+            --df-messenger-chat-background-color: #fafafa;
+            --df-messenger-font-color: black;
+            --df-messenger-send-icon: #3a5f8f;
+            --df-messenger-user-message: #e9e63c;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <df-messenger
+    chat-title="SuporteTI"
+    chat-icon="./images/logoChatBot.png"
+    agent-id="bb66cf38-ed73-45f2-b5c2-a8d4774497cf"
+    language-code="pt-br"
+    ></df-messenger>
+
+    <div>
+        <img src="./images/logo.png" alt="logo">
+        <p>Em construção</p>
+    </div>
+</body>
+</html>

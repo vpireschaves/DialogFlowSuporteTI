@@ -48,4 +48,18 @@ export default class ChamadoModel {
 
         return chamadoId;
     }
+
+    async consultaChamado(chamadoId){
+
+        let sql = `select * from tb_chamado inner join tb_pessoa on tb_chamado.tec_id = tb_pessoa.pes_id inner join tb_servico on tb_chamado.ser_id = tb_servico.ser_id where cha_id = ${chamadoId} `;
+
+        let row = await banco.ExecutaComando(sql);
+
+        if (row.length == 0){
+            return null
+        }
+        else{
+            return new ChamadoModel(row[0]['cha_id'], row[0]['cha_prioridade'], null, new ServicoModel(row[0]['ser_id'], row[0]['ser_nome'], row[0]['ser_prazo']), new PessoaModel(row[0]['pes_id'], row[0]['pes_nome'], row[0]['pes_email'], row[0]['pes_tec']));
+        }
+    }
 }

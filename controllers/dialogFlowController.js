@@ -129,9 +129,7 @@ export default class DialogFlowController {
                         {
                             "text": {
                                 "text": [
-                                    `Chamado aberto com sucesso! O número do chamado é ${chamadoId}. Você
-                                    será atendido por ${tecnico.pessoaNome} no prazo de ${servico.servicoPrazo} horas.
-                                    Posso te ajudar em mais algo?`
+                                    `Chamado aberto com sucesso! O número do chamado é ${chamadoId}. Você será atendido por ${tecnico.pessoaNome} no prazo de ${servico.servicoPrazo} hora(s). Posso te ajudar em mais algo?`
                                 ]
                             }
                     }];
@@ -147,9 +145,7 @@ export default class DialogFlowController {
                             {
                                 "type": "description",
                                 "text": [
-                                    `Chamado aberto com sucesso! O número do chamado é ${chamadoId}. Você
-                                    será atendido por ${tecnico.pessoaNome} no prazo de ${servico.servicoPrazo} horas.
-                                    Posso te ajudar em mais algo?`
+                                    `Chamado aberto com sucesso! O número do chamado é ${chamadoId}. Você será atendido por ${tecnico.pessoaNome} no prazo de ${servico.servicoPrazo} hora(s). Posso te ajudar em mais algo?`
                                 ]
                             }]]
                         }
@@ -158,8 +154,76 @@ export default class DialogFlowController {
                     resposta.json(respostaDF);
                 }
             }
-            else if (intencao && intencao == 'aberturaChamadoPessoa') {
+        } else if (intencao && intencao == 'consultaChamado') {
                 
+            let chamadoId = requisicao.body.queryResult.parameters.number;
+            
+            let chamado = new ChamadoModel();
+            chamado = await chamado.consultaChamado(chamadoId);
+
+            if (chamado == null) {
+                if (ambienteOrigem){
+
+                    respostaDF['fulfillmentMessages'] = [
+                        {
+                            "text": {
+                                "text": [
+                                    `Chamado não consta na nossa base de dados. Em que mais posso te ajudar?`
+                                ]
+                            }
+                    }];
+                    
+                    resposta.json(respostaDF);
+    
+                }
+                else {
+                    
+                    respostaDF['fulfillmentMessages'] = [{
+                        "payload": {
+                            "richContent": [[
+                            {
+                                "type": "description",
+                                "text": [
+                                    `Chamado não consta na nossa base de dados. Em que mais posso te ajudar?`
+                                ]
+                            }]]
+                        }
+                    }];
+    
+                    resposta.json(respostaDF);
+                }
+            }
+            else {
+                if (ambienteOrigem){
+
+                    respostaDF['fulfillmentMessages'] = [
+                        {
+                            "text": {
+                                "text": [
+                                    `Chamado ${chamado.chamadoId} localizado! Você será atendido por ${chamado.tecnico.pessoaNome} no prazo de ${chamado.servico.servicoPrazo} hora(s). Posso te ajudar em mais algo?`
+                                ]
+                            }
+                    }];
+                    
+                    resposta.json(respostaDF);
+    
+                }
+                else {
+                    
+                    respostaDF['fulfillmentMessages'] = [{
+                        "payload": {
+                            "richContent": [[
+                            {
+                                "type": "description",
+                                "text": [
+                                    `Chamado ${chamado.chamadoId} localizado! Você será atendido por ${chamado.tecnico.pessoaNome} no prazo de ${chamado.servico.servicoPrazo} hora(s). Posso te ajudar em mais algo?`
+                                ]
+                            }]]
+                        }
+                    }];
+    
+                    resposta.json(respostaDF);
+                }
             }
         }
     }

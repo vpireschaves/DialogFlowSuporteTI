@@ -1,4 +1,4 @@
-import Database from "../db/database.js"
+import Database from "../db/database.js";
 
 let banco = new Database();
 
@@ -42,5 +42,14 @@ export default class ServicoModel {
         }
 
         return lista;
+    }
+
+    async consultarServicoNome(){
+
+        let sql = `select * from tb_servico where ser_nome = '${this.#servicoNome}'`;
+
+        let row = await banco.ExecutaComando(sql);
+        
+        return new ServicoModel(row[0]['ser_id'], row[0]['ser_nome'], row[0]['ser_prazo']);
     }
 }
